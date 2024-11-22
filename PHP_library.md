@@ -39,7 +39,7 @@ Explanation: Operators in PHP include arithmetic, logical, and comparison operat
 ## Question 5
 **What is the output of the following?**
 
-```php
+php
 $x = 12; 
 $y = 12 + $x++; 
 echo "y = $y x = $x";

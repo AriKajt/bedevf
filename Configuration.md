@@ -1,81 +1,78 @@
-----------------------------------------------------------------
-Set up working environment on virtual machine using Hyper V
-----------------------------------------------------------------
-- Hyper V is available on Windows:Pro/Enterprise/Education
+# Setting Up a Working Environment on a Virtual Machine using Hyper-V
 
-1. Enable Hyper V:
-    -Start Menu > type Turn Windows features on or off (Control Panel)
-    -Enable Hyper V (checkbox) - make sure “Hyper-V Management Tools” and “Hyper-V Platform” are also enabled (subdirectories).
-    - Click OK and restart computer.
-2. Create new virtual machine in Hyper V.
-    - Open Hyper V Manager (Search “Hyper-V Manager” in the Start Menu)
-    - On the right panel, click on New → Virtual Machine.
-    The New Virtual Machine Wizard will open. Follow the steps below:
-    - Specify Name and Location:
-     a) Give your virtual machine a name (e.g., "UbuntuServer").
-      Optionally, choose a location to save the VM files.
-    - Specify Generation:
-     b) Choose Generation 1 if you have compatibility issues.
-        Choose Generation 2 if you're installing a modern version of Ubuntu Server (recommended for better performance and support).
-    - Assign Memory:
-     c) Allocate at least 2048 MB (2 GB) of memory. 
-        You can increase it if   you have more RAM available.
-    - Configure Networking:
-     d) Select the Virtual Switch (e.g., “Default Switch”) 
-        to allow the VM to connect to the network.
-    - Connect Virtual Hard Disk:
-     e) Choose Create a virtual hard disk.
-        Specify the size (e.g., 20 GB or more, depending on your requirements).
-    - Installation Options:
-     f) Choose Install an operating system from a bootable image file.
-     g) Browse to the location of the Ubuntu Server ISO file you downloaded.
-     - Click Finish to create the VM.
-3. Configure Virtual Machine
-    Right click on newly created VM > select Settings
-    - Processor:
-        Increase the number of virtual processors if your hardware supports it (e.g., 2 or 4).
-    - Network adapter:
-        Ensure it’s connected to the correct virtual switch for network access.
-    - Security:
-        Disable Secure Boot if you have compatibility issues with the ISO.
-    - Additional Hard Drives:
-        If needed, you can add more virtual hard drives under SCSI Controller.
-4.  Start the Virtual Machine and Install Ubuntu Server
-    a) In Hyper-V Manager, right-click on the virtual machine and select Connect.
-    b)In the new window, click Start (green button) to boot the VM from the Ubuntu Server ISO.
-    - Follow the Ubuntu Server installation prompts:
-    a) Choose Language:
-        Select the language and press Enter.
-    b) Keyboard Layout:
-        Choose your keyboard layout.
-    c) Network Configuration:
-        If your network adapter is connected correctly, it should obtain an IP address automatically (DHCP).
-        Configure manually if necessary.
-    d) Storage Configuration:
-        Choose Use an Entire Disk and select the virtual hard disk you created earlier.
-        Confirm partition changes.
-    e) Profile Setup:
-        Enter your name, server name, username, and password. Make sure to remember the username and password.
-    f) SSH Server:
-        Select Install OpenSSH Server if you want to connect via SSH later.
-    g) Featured Server Snaps:
-        You can choose additional software (e.g., Docker) to install, or leave it for a later time.
-        The installation will proceed. Once it’s done, the VM will prompt you to restart.
-5. Post-Installation Configuration
-    Once the server restarts, log in using the username and password you created.
-    
-    a) Update the Server:
-    sudo apt update && sudo apt upgrade -y
-    b) Install Additional Software (if needed):
-    OpenSSH (if not installed during setup)
+**Note:** Hyper-V is available on Windows: Pro/Enterprise/Education editions.
+
+## 1. Enable Hyper-V
+1. Open Control Panel:
+   - Start Menu → Type **"Turn Windows features on or off"**.
+   - Enable **Hyper-V** (checkbox) - ensure "Hyper-V Management Tools" and "Hyper-V Platform" are also enabled.
+   - Click **OK** and restart your computer.
+
+## 2. Create a New Virtual Machine in Hyper-V
+1. **Open Hyper-V Manager**:
+   - Search **"Hyper-V Manager"** in the Start Menu.
+2. **Create a New VM**:
+   - On the right panel, click on **New → Virtual Machine**.
+   - Follow the New Virtual Machine Wizard steps:
+     1. **Specify Name and Location**:
+        - Name your virtual machine (e.g., `"UbuntuServer"`).
+        - Optionally, specify a location to save VM files.
+     2. **Specify Generation**:
+        - Choose **Generation 1** for compatibility issues.
+        - Choose **Generation 2** for modern Ubuntu versions (recommended).
+     3. **Assign Memory**:
+        - Allocate at least **2048 MB (2 GB)**.
+     4. **Configure Networking**:
+        - Select the Virtual Switch (e.g., **“Default Switch”**) for network access.
+     5. **Connect Virtual Hard Disk**:
+        - Choose **Create a virtual hard disk** and specify the size (e.g., 20 GB or more).
+     6. **Installation Options**:
+        - Choose **Install an operating system from a bootable image file**.
+        - Browse and select the Ubuntu Server ISO file.
+   - Click **Finish** to create the VM.
+
+## 3. Configure the Virtual Machine
+1. Right-click on the newly created VM → select **Settings**.
+   - **Processor**: Increase the number of virtual processors if supported (e.g., 2 or 4).
+   - **Network Adapter**: Ensure it’s connected to the correct virtual switch.
+   - **Security**: Disable Secure Boot if you encounter ISO compatibility issues.
+   - **Additional Hard Drives**: Add more virtual hard drives under the SCSI Controller if needed.
+
+## 4. Start the Virtual Machine and Install Ubuntu Server
+1. In Hyper-V Manager, right-click on the virtual machine and select **Connect**.
+2. In the new window, click **Start** (green button) to boot the VM from the Ubuntu Server ISO.
+3. Follow the Ubuntu Server installation prompts:
+   1. **Choose Language**: Select and press Enter.
+   2. **Keyboard Layout**: Choose your keyboard layout.
+   3. **Network Configuration**: Should obtain IP automatically via DHCP. Configure manually if necessary.
+   4. **Storage Configuration**: Choose **Use an Entire Disk** and select the virtual hard disk.
+   5. **Profile Setup**: Enter your name, server name, username, and password.
+   6. **SSH Server**: Select **Install OpenSSH Server** if needed.
+   7. **Featured Server Snaps**: Choose additional software (optional).
+4. Once the installation is complete, the VM will prompt you to restart.
+
+## 5. Post-Installation Configuration
+1. Log in using the username and password you created.
+   1. **Update the Server**:
+      ```bash
+      sudo apt update && sudo apt upgrade -y
+      ```
+   2. **Install Additional Software** (if needed):
+      - OpenSSH (if not installed during setup):
+        ```bash
         sudo apt install openssh-server
-    c) To install other essential packages:
+        ```
+      - Other essential packages:
+        ```bash
         sudo apt install net-tools curl vim
-6. Accessing the Server
-    a) Use the Hyper-V console to interact directly with the server.
-    b) If you installed SSH, you can connect from your host machine:
-        ssh username@server-ip
-    (Replace username with your username and server-ip with the IP address of the virtual machine.)
+        ```
+
+## 6. Accessing the Server
+1. Use the Hyper-V console to interact directly with the server.
+2. If you installed SSH, connect from your host machine:
+   ```bash
+   ssh username@server-ip
+Replace username with your username and server-ip with the IP address of the virtual machine.
 
 ----------------------------------------------------------------
 Debugging HyperV:

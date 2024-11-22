@@ -1,7 +1,6 @@
-# HTML Quiz
+# [W3 HTML Manual](https://www.w3schools.com/html/)
 
-## [W3 HTML Manual Reference](https://www.w3schools.com/html/)
-
+## HTML Quiz
 ### First Quiz Set
 
 #### Question 1: Default TCP/IP Port

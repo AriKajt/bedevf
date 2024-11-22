@@ -100,8 +100,8 @@ The `===` operator checks for both value and type equality. It returns true only
 $x = 1200 + "34";
 
 
-A: 1234
-    Explanation:
+**A:** `1234`
+    **Explanation:**
     PHP treats "34" as a number during addition, so 1200 + 34 results in 1234.
 
 ### Question 12

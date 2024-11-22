@@ -1,101 +1,123 @@
-PHP connection to database
-    PDO:
-        1. MySQL - Create database:
-            a) mysql -u root -p
-            b) input login data (myswl username and password)
-            c) CREATE DATABASE example_db;
-            d)USE example_db;
-            e) CREATE TABLE users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(50) NOT NULL,
-                email VARCHAR(100) NOT NULL,
-                password VARCHAR(255) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                );
-            f) INSERT INTO users (username, email, password) 
-                VALUES 
-                ('john_doe', 'john@example.com', 'password123'),
-                ('jane_doe', 'jane@example.com', 'securepass');
-            g) SELECT * FROM users;
+# PHP Database Connection Guide
 
-        2) Create php pdo connection file, you can name it db_connection.php
-            a) Insert data:
-            <?php
-            $host = 'localhost'; // Database server
-            $db   = 'example_db'; // Your database name
-            $user = 'root'; // Your database username
-            $pass = ''; // Your database password - if there is no password set up leave blank
-            $charset = 'utf8mb4';
+## MySQL Database Setup
 
-            $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-            $options = [
-                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES   => false,
-            ];
+### 1. Create Database via Command Line
 
-            try {
-                $pdo = new PDO($dsn, $user, $pass, $options);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e->getMessage(), (int)$e->getCode());
-            }
+#### Database Creation Steps:
+```bash
+# Login to MySQL
+mysql -u root -p
 
-            b) Create a File Named user_controller.php
-                <?php
-                // Include the PDO connection file
-                require 'db_connection.php';
+# Input login credentials when prompted
 
-                // Fetch all users from the database
-                function getAllUsers($pdo) {
-                    $stmt = $pdo->query('SELECT * FROM users');
-                    return $stmt->fetchAll();
-                }
+# Create database
+CREATE DATABASE example_db;
 
-                // Example usage of the getAllUsers function
-                $users = getAllUsers($pdo);
-                foreach ($users as $user) {
-                    echo "Username: " . $user['username'] . "<br>";
-                    echo "Email: " . $user['email'] . "<br>";
-                    echo "Created At: " . $user['created_at'] . "<br><br>";
-                }
+# Use the newly created database
+USE example_db;
 
-            c) Go to http://localhost:8000/user_controller.php to see the output.
+# Create users table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-        MySQLI - Object oriented:
+# Insert sample data
+INSERT INTO users (username, email, password) 
+VALUES 
+('john_doe', 'john@example.com', 'password123'),
+('jane_doe', 'jane@example.com', 'securepass');
 
-            <?php
-            $servername = "localhost";
-            $username = "username";
-            $password = "password";
+# Verify data
+SELECT * FROM users;
+```
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password);
+## PHP Database Connections
 
-            // Check connection
-            if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-            }
-            echo "Connected successfully";
-            ?>
+### 2. PDO Connection
 
+#### a) Database Connection File (`db_connection.php`):
+```php
+<?php
+$host = 'localhost';     // Database server
+$db   = 'example_db';    // Your database name
+$user = 'root';          // Your database username
+$pass = '';              // Your database password
+$charset = 'utf8mb4';
 
-        MySQLI - Procedural:
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
 
-            <?php
-            $servername = "localhost";
-            $username = "username";
-            $password = "password";
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+```
 
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password);
+#### b) User Controller (`user_controller.php`):
+```php
+<?php
+// Include the PDO connection file
+require 'db_connection.php';
 
-            // Check connection
-            if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-            }
-            echo "Connected successfully";
-            ?>
+// Fetch all users from the database
+function getAllUsers($pdo) {
+    $stmt = $pdo->query('SELECT * FROM users');
+    return $stmt->fetchAll();
+}
 
-HTML form ready:
+// Example usage of the getAllUsers function
+$users = getAllUsers($pdo);
+foreach ($users as $user) {
+    echo "Username: " . $user['username'] . "<br>";
+    echo "Email: " . $user['email'] . "<br>";
+    echo "Created At: " . $user['created_at'] . "<br><br>";
+}
+```
 
-Login form
+### 3. MySQLi Connections
+
+#### Object-Oriented Style:
+```php
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+```
+
+#### Procedural Style:
+```php
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
+?>
+```

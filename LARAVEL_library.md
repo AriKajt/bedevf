@@ -1,1 +1,1 @@
-[text](https://laravel.com/docs/11.x)
+[Laravel Manual](https://laravel.com/docs/11.x)

@@ -1,4 +1,4 @@
-[text](https://www.w3schools.com/html/)
+[HTML W3 Manual](https://www.w3schools.com/html/)
 
 
 Quiz:

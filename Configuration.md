@@ -129,11 +129,11 @@ Replace username with your username and server-ip with the IP address of the vir
 ```bash
 sudo apt update
 sudo apt upgrade -y
-
+```
 ## 2. - Install Apache Web Server:
         sudo apt install apache2
 
-Common commands for Apache:
+**Common commands for Apache:
         sudo systemctl status apache2 # Check status of Apache
         sudo systemctl start apache2  # Start Apache
         sudo systemctl stop apache2   # Stop Apache

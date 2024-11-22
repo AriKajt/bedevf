@@ -48,6 +48,8 @@ A: y = 24 x = 13
     Explanation:
     The expression $x++ increments $x after its current value is used. Thus, $y is 24 (12 + 12) and $x becomes 13.
 
+---
+
 ## Question 6
 **What value will `var_dump` show that `echo` will not show?**
 

@@ -126,37 +126,51 @@ Replace username with your username and server-ip with the IP address of the vir
 # Installing Apache
 
 ## 1. Update the System
-```bash
-sudo apt update
-sudo apt upgrade -y
-```
-## 2. - Install Apache Web Server:
+    ```bash
+    sudo apt update
+    sudo apt upgrade -y
+    ```
+
+# 2 - Install Apache Web Server
+
+To install Apache Web Server, run the following command:
+        ```bash
         sudo apt install apache2
+        ```
 
-**Common commands for Apache:
-        sudo systemctl status apache2 # Check status of Apache
-        sudo systemctl start apache2  # Start Apache
-        sudo systemctl stop apache2   # Stop Apache
-        sudo systemctl restart apache2 # Restart Apache
+## Common commands for Apache:
+- sudo systemctl status apache2  # Check status of Apache
+- sudo systemctl start apache2   # Start Apache
+- sudo systemctl stop apache2    # Stop Apache
+- sudo systemctl restart apache2 # Restart Apache
 
-After installation, you can check if Apache is running 
-by visiting http://localhost in your Windows browser.
-----------------------------------------------------------------
+After installation, you can check if Apache is running by visiting `http://localhost` in your Windows browser.
 
-----------------------------------------------------------------
-Installing PHP:
-----------------------------------------------------------------
-1 - Update the system:
+---
+
+# Installing PHP
+
+### 1 - Update the system:
+        ```bash
         sudo apt update
+        ```
+        ```bash
         sudo apt upgrade -y
-2 - You will need to install PHP and the Apache PHP module:
+        ```
+### 2 - You will need to install PHP and the Apache PHP module:
+    ```bash
         sudo apt install php libapache2-mod-php php-mysql
+    ```
     a) To check if PHP is installed, create a test file:
+    ```bash
             sudo nano /var/www/html/info.php
+    ```
     b) Add the following content:
+    ```bash
             <?php
             phpinfo();
             ?>
+    ```
     Save and exit (CTRL + X, then Y and Enter).
     c) Then open your browser and visit http://localhost/info.php. 
     If PHP is installed correctly, you'll see a page with detailed information about your PHP configuration.

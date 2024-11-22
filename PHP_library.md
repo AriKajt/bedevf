@@ -39,7 +39,6 @@ Explanation: Operators in PHP include arithmetic, logical, and comparison operat
 ## Question 5
 **What is the output of the following?**
 
-php
 $x = 12; 
 $y = 12 + $x++; 
 echo "y = $y x = $x";
@@ -98,13 +97,12 @@ The `===` operator checks for both value and type equality. It returns true only
 ## Question 11
 **What is the value of `$x`?**
 
-```php
 $x = 1200 + "34";
-
 
 **A:** `1234`
     **Explanation:**
     PHP treats "34" as a number during addition, so 1200 + 34 results in 1234.
+---
 
 ### Question 12
 **In PHP you can use both single quotes (' ') and double quotes (" ") for strings.**  

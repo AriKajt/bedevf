@@ -129,7 +129,7 @@ Replace username with your username and server-ip with the IP address of the vir
 ```bash
 sudo apt update
 sudo apt upgrade -y
-
+```bash
         
 2 - Install Apache Web Server:
         sudo apt install apache2

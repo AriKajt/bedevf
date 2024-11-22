@@ -152,224 +152,284 @@ After installation, you can check if Apache is running by visiting `http://local
 # Installing PHP
 
 ## 1 - Update the system:
-        ```bash
-        sudo apt update
-        ```
-        ```bash
-        sudo apt upgrade -y
-        ```
+```bash
+sudo apt update
+```
+```bash
+sudo apt upgrade -y
+```
+
 ## 2 - You will need to install PHP and the Apache PHP module:
-    ```bash
-        sudo apt install php libapache2-mod-php php-mysql
-    ```
-    a) To check if PHP is installed, create a test file:
-    ```bash
-            sudo nano /var/www/html/info.php
-    ```
-    b) Add the following content:
-    ```bash
-            <?php
-            phpinfo();
-            ?>
-    ```
-    Save and exit (CTRL + X, then Y and Enter).
-    c) Then open your browser and visit http://localhost/info.php. 
-    If PHP is installed correctly, you'll see a page with detailed information about your PHP configuration.
-----------------------------------------------------------------
+```bash
+sudo apt install php libapache2-mod-php php-mysql
+```
 
-----------------------------------------------------------------
-Installing MySQL:
-----------------------------------------------------------------
+### Verify PHP Installation
+a) Create a test file:
+```bash
+sudo nano /var/www/html/info.php
+```
+
+b) Add the following content:
+```php
+<?php
+phpinfo();
+?>
+```
+
+c) Save and exit (CTRL + X, then Y and Enter)
+
+d) Open your browser and visit http://localhost/info.php. 
+If PHP is installed correctly, you'll see a page with detailed information about your PHP configuration.
+
+---
+
+# Installing MySQL
+
 1 - To install MySQL, run:
-    sudo apt install mysql-server
+```bash
+sudo apt install mysql-server
+```
+
 2 - After installation, secure your MySQL installation:
-        sudo mysql_secure_installation
-    (Follow the prompts to set a root password and secure your MySQL setup.)
+```bash
+sudo mysql_secure_installation
+```
+(Follow the prompts to set a root password and secure your MySQL setup.)
+
 3 - Start MySQL:
-        sudo systemctl start mysql
+```bash
+sudo systemctl start mysql
+```
+
 4 - To check if MySQL is running, use:
-        sudo systemctl status mysql
+```bash
+sudo systemctl status mysql
+```
+
 5 - To access MySQL:
-        sudo mysql -u root -p
-----------------------------------------------------------------
+```bash
+sudo mysql -u root -p
+```
 
-----------------------------------------------------------------
-Configure PHP-APACHE-MySQL connection
-----------------------------------------------------------------
-1 - Configure Apache to Use PHP:
-    - Apache should already be set up to run PHP, but you can check and configure it to ensure everything is working fine.
-    - You can edit the Apache configuration file /etc/apache2/apache2.conf or any specific virtual host file in /etc/apache2/sites-available/.
-2 - Create a Virtual Host for Your Project:
-    a) If you are working on a specific project, it’s helpful to create a virtual host. For example, to set up a local environment for a project:
-        sudo nano /etc/apache2/sites-available/myproject.conf
-    b) Add the following content (replace myproject and the paths as necessary):
+---
 
-            <VirtualHost *:80>
-            ServerAdmin webmaster@localhost
-            DocumentRoot /var/www/html/myproject
-            ServerName myproject.local
+# Configure PHP-APACHE-MySQL Connection
 
-            <Directory /var/www/html/myproject>
-                Options Indexes FollowSymLinks MultiViews
-                AllowOverride All
-                Require all granted
-            </Directory>
+## 1 - Configure Apache to Use PHP:
+- Apache should already be set up to run PHP, but you can check and configure it to ensure everything is working fine.
+- You can edit the Apache configuration file `/etc/apache2/apache2.conf` or any specific virtual host file in `/etc/apache2/sites-available/`.
 
-            ErrorLog ${APACHE_LOG_DIR}/error.log
-            CustomLog ${APACHE_LOG_DIR}/access.log combined
-        </VirtualHost>
+## 2 - Create a Virtual Host for Your Project:
+a) If you are working on a specific project, it's helpful to create a virtual host:
+```bash
+sudo nano /etc/apache2/sites-available/myproject.conf
+```
 
-    c) Then enable the new site and reload Apache:
-            sudo a2ensite myproject.conf
-            sudo systemctl reload apache2
+b) Add the following content (replace myproject and the paths as necessary):
+```apache
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/myproject
+    ServerName myproject.local
 
-    d) ! You’ll need to modify your hosts file in Windows to point myproject.local to 127.0.0.1. 
-    - Open C:\Windows\System32\drivers\etc\hosts and add:
-            127.0.0.1 myproject.local
-    e) Enable .htaccess for Apache:
-        In your project directory (/var/www/html/myproject), you can now use .htaccess files for URL rewrites or custom rules. Make sure you’ve set AllowOverride All in the Apache configuration, as shown earlier.
-
-        TEST complete stack:
-        - Open a browser and go to http://localhost. You should see the Apache default page.
-        - For your PHP testing, go to http://localhost/info.php.
-        - For MySQL, try accessing the database via the MySQL command line:
-            mysql -u root -p
-----------------------------------------------------------------
-
-----------------------------------------------------------------
-Installing Composer for PHP 
-----------------------------------------------------------------
-Composer is a dependency manager for PHP, useful for managing libraries and packages in your projects. You can install it globally on WSL by running the following:
-    sudo apt install curl php-cli php-mbstring git unzip
-    curl -sS https://getcomposer.org/installer | php
-    sudo mv composer.phar /usr/local/bin/composer
-----------------------------------------------------------------
-
-
-----------------------------------------------------------------
-Installing LAMP
-----------------------------------------------------------------
-1 - Update the Package List:
-    sudo apt update
-2 - Install Apache, MySQL, and PHP:
-    sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql -y
-This command installs:
-        Apache web server
-        MySQL database server
-        PHP (along with necessary modules for Apache to run PHP)
-4 - Confirm the status of Apache and MySQL:
-    sudo systemctl status apache2
-    sudo systemctl status mysql
-
-Verify installation:
-Check Apache:
-    Open a browser on your Windows machine and go to http://localhost.
-    If Apache is installed correctly, you should see the Apache default page.
-Check PHP:
-    Create a PHP info file to verify PHP is working.
-    sudo nano /var/www/html/info.php
-    Add the following content:
-    <?php
-    phpinfo();
-    ?>
-    Save the file (CTRL + X, then Y and Enter).
-    Open http://localhost/info.php in your browser. If everything is installed correctly, you’ll see a detailed PHP information page.
-Check MySQL:
-    To log into MySQL:
-        sudo mysql -u root -p
-    Set up your root password and verify that you’re inside MySQL by checking the prompt:
-
-    mysql> SHOW DATABASES;
-
-Configure Apache
-If you’re working on a specific project, you can configure Apache to serve your project directory by editing the default site configuration or creating a new one.
-    Edit the default site config file:
-        sudo nano /etc/apache2/sites-available/000-default.conf
-    Set the DocumentRoot to your project folder, for example:
-        DocumentRoot /var/www/html/myproject
-    Restart Apache:
-        sudo systemctl restart apache2
-
-Enable .htaccess for Apache
-If you want to use .htaccess files for custom configurations (e.g., URL rewrites), ensure that the Apache configuration allows overrides. In /etc/apache2/sites-available/000-default.conf, ensure this block is set as follows:
-    <Directory /var/www/html>
-    AllowOverride All
+    <Directory /var/www/html/myproject>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require all granted
     </Directory>
 
-    Then restart Apache:
-        sudo systemctl restart apache2
-----------------------------------------------------------------
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
 
-----------------------------------------------------------------
-Working with linux terminal:
-----------------------------------------------------------------
-File System Navigation
-        ls – Lists files and directories.
-            ls       # List all files in current directory
-            ls -l    # List with detailed info
-            ls -a    # List all files, including hidden ones
-        cd – Change directory.
-            cd /path/to/directory    # Navigate to a directory
-            cd ..                    # Go up one directory level
-            cd ~                     # Go to home directory
- File and Directory Management
-        touch – Create an empty file.
-            touch filename.txt
-        mkdir – Create a new directory.
-            mkdir directory_name
-        rm – Remove a file.
-            rm file_name
-            rm -r directory_name  # Remove a directory and its contents
-        rmdir – Remove an empty directory.
-            rmdir directory_name
-        cp – Copy files or directories.
-            cp file_name destination/
-            cp -r dir_name destination/  # Copy a directory recursively
-        mv – Move or rename files.
-            mv old_name new_name        # Rename a file
-            mv file_name /path/to/destination/  # Move a file
-        cat – Display the contents of a file.
-            cat file_name
-        nano – Edit a file with a simple terminal-based text editor.
-            nano file_name
-        vim – Edit a file with the Vim text editor.
-            vim file_name
-File Permissions
-    chmod – Change file permissions.
-        chmod 755 file_name      # Give read, write, and execute permissions to owner
-        chmod +x file_name       # Add execute permission
-        chmod -r 644 file_name   # Remove write permission for group and others
-    chown – Change file ownership.
-        sudo chown user:group file_name
-Network Management
-    ssh – Secure shell to connect to a remote server.
-        ssh username@hostname_or_ip
-Package Management (Debian/Ubuntu-based systems)
-    apt update – Update the package list.
-        sudo apt update
-    apt upgrade – Upgrade all installed packages.
-        sudo apt upgrade
-    apt install – Install a package.
-        sudo apt install package_name
-    apt remove – Remove a package.
-        sudo apt remove package_name
-Sudo and User Management
-    sudo – Run commands with superuser privileges.
-        sudo command
-    adduser – Add a new user.
-        sudo adduser new_user
-    passwd – Change user password.
-        sudo passwd user_name
-Other Useful Commands
-    history – Show command history.
-        history
+c) Then enable the new site and reload Apache:
+```bash
+sudo a2ensite myproject.conf
+sudo systemctl reload apache2
+```
 
-Helpful Shortcuts
-    Ctrl + C – Terminate a running command.
-    Ctrl + Z – Suspend a running command.
-    Ctrl + D – Log out from the terminal.
-    Tab – Autocomplete file and directory names.
-----------------------------------------------------------------
+d) Modify hosts file in Windows to point myproject.local to 127.0.0.1:
+- Open `C:\Windows\System32\drivers\etc\hosts` and add:
+```
+127.0.0.1 myproject.local
+```
+
+e) Enable .htaccess for Apache:
+In your project directory (`/var/www/html/myproject`), you can now use .htaccess files for URL rewrites or custom rules.
+
+## Test Complete Stack:
+- Open a browser and go to http://localhost
+- For PHP testing, go to http://localhost/info.php
+- For MySQL, try accessing the database via the MySQL command line:
+```bash
+mysql -u root -p
+```
+
+---
+
+# Installing Composer for PHP 
+```bash
+sudo apt install curl php-cli php-mbstring git unzip
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+---
+
+# Installing LAMP
+
+1 - Update the Package List:
+```bash
+sudo apt update
+```
+
+2 - Install Apache, MySQL, and PHP:
+```bash
+sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql -y
+```
+
+This installs:
+- Apache web server
+- MySQL database server
+- PHP (with necessary modules for Apache)
+
+3 - Confirm the status of Apache and MySQL:
+```bash
+sudo systemctl status apache2
+sudo systemctl status mysql
+```
+
+# Verify Installation
+
+## Check Apache
+- Open browser on Windows machine
+- Navigate to `http://localhost`
+- Confirm Apache default page displays
+
+## Check PHP
+1. Create PHP info file:
+```bash
+sudo nano /var/www/html/info.php
+```
+
+2. Add content:
+```php
+<?php
+phpinfo();
+?>
+```
+
+3. Save file (CTRL + X, then Y and Enter)
+4. Open `http://localhost/info.php`
+5. Verify detailed PHP information page appears
+
+## Check MySQL
+1. Log into MySQL:
+```bash
+sudo mysql -u root -p
+```
+
+2. Verify databases:
+```sql
+mysql> SHOW DATABASES;
+```
+
+---
+
+# Configure Apache
+
+## Project Directory Configuration
+1. Edit default site configuration:
+```bash
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+2. Set DocumentRoot:
+```apache
+DocumentRoot /var/www/html/myproject
+```
+
+3. Restart Apache:
+```bash
+sudo systemctl restart apache2
+```
+
+## Enable .htaccess
+1. In configuration file, ensure:
+```apache
+<Directory /var/www/html>
+    AllowOverride All
+</Directory>
+```
+
+2. Restart Apache:
+```bash
+sudo systemctl restart apache2
+```
+
+---
+
+# Linux Terminal Commands
+
+## File System Navigation
+- `ls`: List files/directories
+  - `ls`: List all files in current directory
+  - `ls -l`: Detailed listing
+  - `ls -a`: Show hidden files
+
+- `cd`: Change directory
+  - `cd /path/to/directory`: Navigate to directory
+  - `cd ..`: Go up one directory level
+  - `cd ~`: Go to home directory
+
+## File and Directory Management
+- `touch filename.txt`: Create empty file
+- `mkdir directory_name`: Create new directory
+- `rm file_name`: Remove file
+- `rm -r directory_name`: Remove directory and contents
+- `rmdir directory_name`: Remove empty directory
+- `cp file_name destination/`: Copy file
+- `cp -r dir_name destination/`: Copy directory recursively
+- `mv old_name new_name`: Rename file
+- `mv file_name destination/`: Move file
+- `cat file_name`: Display file contents
+
+## Text Editors
+- `nano file_name`: Simple terminal-based editor
+- `vim file_name`: Advanced terminal editor
+
+## File Permissions
+- `chmod 755 file_name`: Give read/write/execute to owner
+- `chmod +x file_name`: Add execute permission
+- `chmod -r 644 file_name`: Remove write permission
+
+## File Ownership
+- `sudo chown user:group file_name`: Change file ownership
+
+## Network Management
+- `ssh username@hostname_or_ip`: Secure shell to remote server
+
+## Package Management
+- `sudo apt update`: Update package list
+- `sudo apt upgrade`: Upgrade installed packages
+- `sudo apt install package_name`: Install package
+- `sudo apt remove package_name`: Remove package
+
+## User Management
+- `sudo command`: Run with superuser privileges
+- `sudo adduser new_user`: Add new user
+- `sudo passwd user_name`: Change user password
+
+## Other Commands
+- `history`: Show command history
+
+## Helpful Shortcuts
+- `Ctrl + C`: Terminate running command
+- `Ctrl + Z`: Suspend running command
+- `Ctrl + D`: Log out from terminal
+- `Tab`: Autocomplete file/directory names
 
 ----------------------------------------------------------------
 Configuring GIT:

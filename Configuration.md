@@ -74,65 +74,62 @@
    ssh username@server-ip
 Replace username with your username and server-ip with the IP address of the virtual machine.
 
-----------------------------------------------------------------
-Debugging HyperV:
-----------------------------------------------------------------
-If you cant see any created Virual Machines under Hyper V Manager:
-    a) Open Hyper-V Manager.
-    b) In the menu, click on Action in the top-left corner.
-    c) Choose Connect to Server.
-    d)In the dialog box that appears:
-        Choose Local Computer.
-        Click OK.
-    If you encounter error: Virtual Machine Management Service" (VMMS) is not running, do this:
-    a) Start the Virtual Machine Management Service
-    b) Press Windows + R to open the Run dialog box.
-    c) Type services.msc and press Enter. This will open the Services window.
-    d) Scroll down and locate the service named Hyper-V Virtual Machine Management.
-    e) Check the service status:
-        If it is not running, right-click on it and choose Start.
-        If it’s already running, right-click and select Restart.
+# Debugging Hyper-V
 
-Failed unmounting /cdrom:
-    a) Force shutdown through HyperV Management:
-       1 - Right-click on the virtual machine in Hyper-V Manager 
-            (e.g.,"AlgebraTest").
-       2 - Select Turn Off. This is like forcing the power off 
-            on a physical machine—use it if a normal shutdown fails. 
-    b) Remove the Installation Media:
-        1 - In Hyper-V Manager, right-click on the VM (e.g., "AlgebraTest") and  select Settings.
-        2 - Go to the SCSI Controller or IDE Controller (where the CD/DVD drive is configured).
-        3 - Find the virtual DVD drive that has the Ubuntu ISO attached.
-        4 - Remove the mounted ISO by selecting None or simply unmount it by choosing Empty.
-        5 - Restart the Virtual Machine.
-----------------------------------------------------------------
+## If You Can't See Any Created Virtual Machines Under Hyper-V Manager
+1. **Open Hyper-V Manager**.
+2. In the menu, click on **Action** in the top-left corner.
+3. Choose **Connect to Server**.
+4. In the dialog box that appears:
+   - Choose **Local Computer**.
+   - Click **OK**.
 
-----------------------------------------------------------------
-Installing WSL
-----------------------------------------------------------------
-- Open PowerShell as Administrator:
-    Right-click the Start button and select Windows PowerShell (Admin).
-- Enable WSL:
-    Run the following command in PowerShell to enable WSL and install the default Linux distribution (Ubuntu):
+### If You Encounter the Error: "Virtual Machine Management Service (VMMS) is Not Running"
+1. **Start the Virtual Machine Management Service**:
+   1. Press **Windows + R** to open the Run dialog box.
+   2. Type `services.msc` and press Enter. This will open the Services window.
+   3. Scroll down and locate the service named **Hyper-V Virtual Machine Management**.
+   4. Check the service status:
+      - If it is not running, right-click on it and choose **Start**.
+      - If it’s already running, right-click and select **Restart**.
 
-        wsl --install
+## Failed Unmounting /cdrom
+1. **Force Shutdown Through Hyper-V Management**:
+   1. Right-click on the virtual machine in Hyper-V Manager (e.g., "AlgebraTest").
+   2. Select **Turn Off**. This is like forcing the power off on a physical machine—use it if a normal shutdown fails.
+2. **Remove the Installation Media**:
+   1. In Hyper-V Manager, right-click on the VM (e.g., "AlgebraTest") and select **Settings**.
+   2. Go to the **SCSI Controller** or **IDE Controller** (where the CD/DVD drive is configured).
+   3. Find the virtual DVD drive that has the Ubuntu ISO attached.
+   4. Remove the mounted ISO by selecting **None** or simply unmount it by choosing **Empty**.
+   5. Restart the Virtual Machine.
 
-- Install Ubuntu from the Microsoft Store:
-    a) Go to the Microsoft Store, search for "Ubuntu", and choose the latest version (e.g., Ubuntu 22.04).
-    b) Install it and launch it from the Start Menu.
+---
 
-- Configure Ubuntu:
-    After installing Ubuntu, it will launch a terminal. You’ll be asked to create a username and password for your Linux user account.
-----------------------------------------------------------------
+# Installing WSL (Windows Subsystem for Linux)
 
-----------------------------------------------------------------
-Installing Apache:
-----------------------------------------------------------------
-1 - Update the system:
+1. **Open PowerShell as Administrator**:
+   - Right-click the Start button and select **Windows PowerShell (Admin)**.
+2. **Enable WSL**:
+   - Run the following command in PowerShell to enable WSL and install the default Linux distribution (Ubuntu):
+     ```bash
+     wsl --install
+     ```
+3. **Install Ubuntu from the Microsoft Store**:
+   1. Go to the Microsoft Store, search for **"Ubuntu"**, and choose the latest version (e.g., Ubuntu 22.04).
+   2. Install it and launch it from the Start Menu.
+4. **Configure Ubuntu**:
+   - After installing Ubuntu, it will launch a terminal. You’ll be asked to create a username and password for your Linux user account.
 
-        sudo apt update
+---
 
-        sudo apt upgrade -y
+# Installing Apache
+
+## 1. Update the System
+```bash
+sudo apt update
+sudo apt upgrade -y
+
         
 2 - Install Apache Web Server:
         sudo apt install apache2

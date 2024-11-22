@@ -102,13 +102,3 @@ A: <table>, <tr>, <td>
         <tr>: This tag defines a row within the table.
         <td>: This tag defines a cell within a row.
         So, the hierarchy goes from <table> (container for the whole table) to <tr> (table rows) and then to <td> (individual cells in the row).
-
-
-A: 
-A: 
-A: 
-A: 
-A: 
-A: 
-A: 
-A: 

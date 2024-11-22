@@ -150,14 +150,14 @@ After installation, you can check if Apache is running by visiting `http://local
 
 # Installing PHP
 
-### 1 - Update the system:
+## 1 - Update the system:
         ```bash
         sudo apt update
         ```
         ```bash
         sudo apt upgrade -y
         ```
-### 2 - You will need to install PHP and the Apache PHP module:
+## 2 - You will need to install PHP and the Apache PHP module:
     ```bash
         sudo apt install php libapache2-mod-php php-mysql
     ```

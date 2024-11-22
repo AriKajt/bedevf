@@ -1,3 +1,5 @@
+[text](https://www.php.net/manual/en/index.php)
+
 Question 1
 What does PHP stand for?
 A: PHP: Hypertext Preprocessor

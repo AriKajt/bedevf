@@ -76,6 +76,7 @@ Set up working environment on virtual machine using Hyper V
     b) If you installed SSH, you can connect from your host machine:
         ssh username@server-ip
     (Replace username with your username and server-ip with the IP address of the virtual machine.)
+
 ----------------------------------------------------------------
 Debugging HyperV:
 ----------------------------------------------------------------
@@ -131,8 +132,11 @@ Installing WSL
 Installing Apache:
 ----------------------------------------------------------------
 1 - Update the system:
+
         sudo apt update
+
         sudo apt upgrade -y
+        
 2 - Install Apache Web Server:
         sudo apt install apache2
 

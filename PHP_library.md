@@ -1,144 +1,188 @@
 # [PHP Manual](https://www.php.net/manual/en/index.php)
 
-Question 1
-What does PHP stand for?
+## Question 1
+**What does PHP stand for?**
+
 A: PHP: Hypertext Preprocessor
-    Explanation:
-    PHP is a recursive acronym that stands for "PHP: Hypertext Preprocessor." It is a popular server-side scripting language designed for web development.
 
-Question 2
-PHP Server scripts are surrounded by?
-A: <?php ... ?>
-    Explanation:
-    PHP scripts are enclosed within the <?php ... ?> tags, allowing the server to interpret and execute the code within.
+Explanation: PHP is a recursive acronym that stands for "PHP: Hypertext Preprocessor." It is a popular server-side scripting language designed for web development.
 
-Question 3
-The PHP syntax is most similar to:
+---
+
+## Question 2
+**PHP Server scripts are surrounded by?**
+
+A: `<?php ... ?>`
+
+Explanation: PHP scripts are enclosed within the tags, allowing the server to interpret and execute the code within.
+
+---
+
+## Question 3
+**The PHP syntax is most similar to:**
+
 A: Perl and C
-    Explanation:
-    PHP's syntax closely resembles that of Perl and C, making it familiar to developers who have experience with these languages.
 
-Question 4
-Which of the following are operators in PHP?
-A: .+, ++, !==
-    Explanation:
-    Operators in PHP include arithmetic, logical, and comparison operators. In this example, .+ is used for concatenation, ++ is an increment operator, and !== is a strict inequality operator.
+Explanation: PHP's syntax closely resembles that of Perl and C, making it familiar to developers who have experience with these languages.
 
-Question 5
-What is the output of the following?
+---
 
-php
-Copy code
-$x = 12;
-$y = 12 + $x++;
+## Question 4
+**Which of the following are operators in PHP?**
+
+A: `.`, `++`, `!==`
+
+Explanation: Operators in PHP include arithmetic, logical, and comparison operators. In this example, `.`, `++`, and `!==` are examples of commonly used operators.
+
+---
+
+## Question 5
+**What is the output of the following?**
+
+```php
+$x = 12; 
+$y = 12 + $x++; 
 echo "y = $y x = $x";
+
 A: y = 24 x = 13
     Explanation:
     The expression $x++ increments $x after its current value is used. Thus, $y is 24 (12 + 12) and $x becomes 13.
 
-Question 6
-What value will var_dump show that echo will not show?
-A: NULL
-    Explanation:
-    The var_dump function provides detailed information about variables, including data types and values like NULL, which echo does not show.
+## Question 6
+**What value will `var_dump` show that `echo` will not show?**
 
-Question 7
-What is a correct way to add a comment in PHP?
-A: /* ... */
-    Explanation:
-    In PHP, multi-line comments are wrapped in /* ... */. Single-line comments can be written with // or #.
+**A:** NULL  
+**Explanation:**  
+The `var_dump` function provides detailed information about variables, including data types and values like NULL, which `echo` does not show.
 
-Question 8
-All variables in PHP start with [_________] symbol.
-A: $
-    Explanation:
-    In PHP, all variables start with a dollar sign $, followed by the variable name.
+---
 
-Question 9
-What is the value returned by: (int) 9.9 - 1
-A: 8
-    Explanation:
-    In PHP, casting 9.9 to an int results in 9. Subtracting 1 from 9 gives 8.
+## Question 7
+**What is a correct way to add a comment in PHP?**
 
-Question 10
-Use the [_____] operator to test if two values are identical in both value and type.
-A: ===
-    Explanation:
-    The === operator checks for both value and type equality. It returns true only if the values and types are identical.
+**A:** `/* ... */`  
+**Explanation:**  
+In PHP, multi-line comments are wrapped in `/* ... */`. Single-line comments can be written with `//` or `#`.
 
-Question 11
-What is the value of $x?
+---
 
-php
-Copy code
+## Question 8
+**All variables in PHP start with [_________] symbol.**
+
+**A:** `$`  
+**Explanation:**  
+In PHP, all variables start with a dollar sign `$`, followed by the variable name.
+
+---
+
+## Question 9
+**What is the value returned by: `(int) 9.9 - 1`**
+
+**A:** 8  
+**Explanation:**  
+In PHP, casting `9.9` to an int results in `9`. Subtracting `1` from `9` gives `8`.
+
+---
+
+## Question 10
+**Use the [_____] operator to test if two values are identical in both value and type.**
+
+**A:** `===`  
+**Explanation:**  
+The `===` operator checks for both value and type equality. It returns true only if the values and types are identical.
+
+---
+
+## Question 11
+**What is the value of `$x`?**
+
+```php
 $x = 1200 + "34";
+
+
 A: 1234
     Explanation:
     PHP treats "34" as a number during addition, so 1200 + 34 results in 1234.
 
-Question 12
-In PHP you can use both single quotes (' ') and double quotes (" ") for strings.
-A: True
-    Explanation:
-    PHP supports both single and double quotes for defining strings, but double quotes allow variable interpolation and escape sequences.
+### Question 12
+**In PHP you can use both single quotes (' ') and double quotes (" ") for strings.**  
+**A:** True  
+**Explanation:**  
+PHP supports both single and double quotes for defining strings, but double quotes allow variable interpolation and escape sequences.
 
-Question 13
-PHP and HTML cannot be intermingled in the same file.
-A: False
-    Explanation:
-    PHP can be embedded within HTML, allowing dynamic content generation within a webpage.
+---
 
-Question 14
-Which escape sequences can be used in single quoted (' ') strings in PHP?
-A: \', \\
-    Explanation:
-    In PHP, single-quoted strings recognize only \' for an escaped single quote and \\ for a backslash.
+### Question 13
+**PHP and HTML cannot be intermingled in the same file.**  
+**A:** False  
+**Explanation:**  
+PHP can be embedded within HTML, allowing dynamic content generation within a webpage.
 
-Question 15
-You cannot run PHP files from the command line.
-A: False
-    Explanation:
-    PHP can be executed from the command line using the php command, making it versatile for scripts beyond web development.
+---
 
-Question 16
-You can run PHP files on a server.
-A: True
-    Explanation:
-    PHP is commonly used as a server-side scripting language, enabling it to generate dynamic web pages on a web server.
+### Question 14
+**Which escape sequences can be used in single quoted (' ') strings in PHP?**  
+**A:** \', \\  
+**Explanation:**  
+In PHP, single-quoted strings recognize only \' for an escaped single quote and \\ for a backslash.
 
-Question 17
-In PHP, variable names are case sensitive.
-A: True
-    Explanation:
-    In PHP, variables are case sensitive, meaning $Var and $var are different variables.
+---
 
-Question 18
-In PHP, function names are not case sensitive.
-A: True
-    Explanation:
-    PHP function names are not case sensitive, so calling myFunction() or MyFunction() will invoke the same function.
+### Question 15
+**You cannot run PHP files from the command line.**  
+**A:** False  
+**Explanation:**  
+PHP can be executed from the command line using the php command, making it versatile for scripts beyond web development.
 
+---
 
+### Question 16
+**You can run PHP files on a server.**  
+**A:** True  
+**Explanation:**  
+PHP is commonly used as a server-side scripting language, enabling it to generate dynamic web pages on a web server.
 
-Question 1
-In PHP, arrays can either be key/value (i.e., an associative array) or indexed by integers (i.e., a linear array).
-A: True
-    Explanation:
-    PHP supports two types of arrays: associative arrays (key/value pairs) and indexed arrays (using integer keys starting from 0).
+---
 
-Question 2
-Which symbol is used to associate a key to a value in an associative array?
-A: =>
-    Explanation:
-    The => symbol is used in PHP to link a key with its corresponding value in an associative array.
+### Question 17
+**In PHP, variable names are case sensitive.**  
+**A:** True  
+**Explanation:**  
+In PHP, variables are case sensitive, meaning $Var and $var are different variables.
 
-Question 3
-Fill in the blank to echo 'Arrays':
+---
 
-php
-Copy code
+### Question 18
+**In PHP, function names are not case sensitive.**  
+**A:** True  
+**Explanation:**  
+PHP function names are not case sensitive, so calling myFunction() or MyFunction() will invoke the same function.
+
+---
+
+### Question 1
+**In PHP, arrays can either be key/value (i.e., an associative array) or indexed by integers (i.e., a linear array).**  
+**A:** True  
+**Explanation:**  
+PHP supports two types of arrays: associative arrays (key/value pairs) and indexed arrays (using integer keys starting from 0).
+
+---
+
+### Question 2
+**Which symbol is used to associate a key to a value in an associative array?**  
+**A:** =>  
+**Explanation:**  
+The => symbol is used in PHP to link a key with its corresponding value in an associative array.
+
+---
+
+### Question 3
+**Fill in the blank to echo 'Arrays':**
+
+```php
 $stuff = array('course' => 'PHP-Intro', 'topic' => 'Arrays');
 echo $stuff['topic'];
+
 A: $stuff['topic']
     Explanation:
     To access the value 'Arrays', you refer to the key 'topic' in the associative array $stuff.

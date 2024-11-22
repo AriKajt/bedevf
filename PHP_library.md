@@ -179,7 +179,7 @@ The => symbol is used in PHP to link a key with its corresponding value in an as
 ### Question 3
 **Fill in the blank to echo 'Arrays':**
 
-```php
+
 $stuff = array('course' => 'PHP-Intro', 'topic' => 'Arrays');
 echo $stuff['topic'];
 
@@ -289,8 +289,7 @@ A: False
 ### Question 4
 What output does the following code produce?
 
-php
-Copy code
+
 function double($val){ 
     $val = $val * 2; 
     return $val; 

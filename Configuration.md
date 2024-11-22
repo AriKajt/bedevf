@@ -431,181 +431,233 @@ sudo systemctl restart apache2
 - `Ctrl + D`: Log out from terminal
 - `Tab`: Autocomplete file/directory names
 
-----------------------------------------------------------------
-Configuring GIT:
-----------------------------------------------------------------
-1. Install Git
-Download Git:
+# Configuring GIT
 
-Go to the Git for Windows download page and download the installer.
-[text](https://gitforwindows.org/)
+## 1. Install Git
 
-Install Git:
-- Run the installer and follow the installation instructions.
-- Choose the default options unless you have specific needs.
-- Make sure to select "Use Git from the command line and also from 3rd-party software" during installation.
+### Download Git
+Go to the [Git for Windows download page](https://gitforwindows.org/) and download the installer.
 
-2. Verify the Installation:
+### Install Git
+- Run the installer and follow the installation instructions
+- Choose the default options unless you have specific needs
+- Make sure to select "Use Git from the command line and also from 3rd-party software" during installation
 
-- Open Command Prompt or PowerShell.
-Run:
+## 2. Verify the Installation
+
+- Open Command Prompt or PowerShell
+- Run:
+```bash
 git --version
+```
 (If Git is installed correctly, you should see the Git version number.)
 
-3. Configure Git in VS Code
-- Open VS Code.
-- Press Ctrl + Shift + P to open the Command Palette.
-- Type Git: Enable and select Git: Enable if it’s not already enabled.
+## 3. Configure Git in VS Code
+- Open VS Code
+- Press `Ctrl + Shift + P` to open the Command Palette
+- Type Git: Enable and select Git: Enable if it's not already enabled
 
-4. Configure Git User Information
+## 4. Configure Git User Information
 - Open the Terminal in VS Code:
-    	Go to View > Terminal or press Ctrl + ` (backtick).
-a) Set your Git username and email:
-    git config --global user.name "Your Name"
-    git config --global user.email "your.email@example.com"
+    Go to View > Terminal or press `Ctrl + ` ` (backtick)
+- Set your Git username and email:
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
 
-Working with repository:
-1. Initialize repository from VS code:
-a) Create repository in VS code
+## Working with Repository
+
+### 1. Initialize Repository from VS Code
+a) Create repository in VS Code
 b) Initialize the Git Repository:
-    - Click on the Source Control icon in the sidebar (or press Ctrl + Shift + G).
-    - Click Initialize Repository.
-        This will create a .git folder in your project directory, indicating that it's now a Git repository.
+    - Click on the Source Control icon in the sidebar (or press `Ctrl + Shift + G`)
+    - Click Initialize Repository
+        This will create a .git folder in your project directory, indicating that it's now a Git repository
+
 c) Create a .gitignore File (Optional):
-    - If you want to exclude certain files or folders from being tracked, create a .gitignore file.
-    - Right-click in the file explorer, select New File, and name it .gitignore.
+    - If you want to exclude certain files or folders from being tracked, create a .gitignore file
+    - Right-click in the file explorer, select New File, and name it .gitignore
     - Add file/folder patterns you want to exclude, e.g.:
-                            node_modules/
-                            .env
-                            *.log
+```
+node_modules/
+.env
+*.log
+```
+
 d) Stage Changes:
-    - Make some changes or create a new file.
-    - In the Source Control panel, you’ll see a list of modified files.
-    - Click the + (plus) icon next to the file to stage it or click + next  to the Changes label to stage all changes
+    - Make some changes or create a new file
+    - In the Source Control panel, you'll see a list of modified files
+    - Click the + (plus) icon next to the file to stage it or click + next to the Changes label to stage all changes
 
 e) Commit Changes:
-    - Enter a commit message in the input box at the top of the Source Control panel (e.g., "Initial commit").
-    - Click the ✔ (checkmark) icon to commit the changes.
-e) Create a New GitHub Repository from VS Code
+    - Enter a commit message in the input box at the top of the Source Control panel (e.g., "Initial commit")
+    - Click the ✔ (checkmark) icon to commit the changes
+
+### Create a New GitHub Repository from VS Code
 1. Install GitHub Extension (Optional):
-    - Go to the Extensions view (Ctrl + Shift + X).
-    - Search for "GitHub Repositories" and install it.
-2. Sign In to GitHub
-    - In VS Code, open the Command Palette with Ctrl + Shift + P.
-    - Type "Sign In to GitHub" and select it.
-    - Follow the instructions to authenticate with GitHub.
+    - Go to the Extensions view (`Ctrl + Shift + X`)
+    - Search for "GitHub Repositories" and install it
+
+2. Sign In to GitHub:
+    - In VS Code, open the Command Palette with `Ctrl + Shift + P`
+    - Type "Sign In to GitHub" and select it
+    - Follow the instructions to authenticate with GitHub
+
 3. Add Remote to GitHub:
-    - Open the Command Palette with Ctrl + Shift + P.
-    - Type "Publish to GitHub" or "Git: Publish to GitHub" and select it.
-    - If you are signed in to GitHub, VS Code will prompt you to create a new GitHub repository.
-    - Enter a repository name when prompted (or keep the default folder name).
-    - Choose whether to make the repository public or private.
+    - Open the Command Palette with `Ctrl + Shift + P`
+    - Type "Publish to GitHub" or "Git: Publish to GitHub" and select it
+    - If you are signed in to GitHub, VS Code will prompt you to create a new GitHub repository
+    - Enter a repository name when prompted (or keep the default folder name)
+    - Choose whether to make the repository public or private
+
 4. Push Local Repository to GitHub:
-    - After setting up the repository name, VS Code will automatically add the GitHub remote and push your local commits.
-    - You should see a message indicating that the repository was successfully published.
+    - After setting up the repository name, VS Code will automatically add the GitHub remote and push your local commits
+    - You should see a message indicating that the repository was successfully published
 
+## 2. Create Repository Manually on Github, Push from Local
 
+### A) Create a New Repository on GitHub
+- Go to GitHub and sign in
+- Click the + icon in the top right corner and select New Repository
+- Fill out the repository name and other details
+- Choose Public or Private
+- DO NOT initialize with a README if you already have a local repository
 
-
-2. Create repository manually on Github, push to Github from local:
-
-a) Create a New Repository on GitHub:
-- Go to GitHub and sign in.
-- Click the + icon in the top right corner and select New Repository.
-- Fill out the repository name and other details.
-- Choose Public or Private.
-- DO NOT initialize with a README if you already have a local repository.
-b) Add GitHub Remote to VS Code:
-- In VS Code, open the terminal (Ctrl + `).
+### B) Add GitHub Remote to VS Code
+- In VS Code, open the terminal (`Ctrl + ` `)
 - Add the remote URL of the GitHub repository:
-    git remote add origin https://github.com/YourUsername/YourRepoName.git
+```bash
+git remote add origin https://github.com/YourUsername/YourRepoName.git
+```
 - Verify the remote URL is set correctly:
-    git remote -v
-c) Push Local Repository to GitHub:
+```bash
+git remote -v
+```
+
+### C) Push Local Repository to GitHub
 - Push your local commits to GitHub:
-    git push -u origin main
+```bash
+git push -u origin main
+```
 - If your default branch is master, use:
-    git push -u origin master
+```bash
+git push -u origin master
+```
 (The -u flag sets the upstream branch so you can use git push without specifying origin main next time.)
-d) Confirm Your Changes on GitHub
 
+### D) Confirm Your Changes on GitHub
 
-
-2. Clone already created repository from Github:
+## Clone Already Created Repository from Github
 - Get the SSH URL:
-    Go to the repository on GitHub and copy the SSH URL (e.g., git@github.com:YourUsername/YourRepoName.git).
+    Go to the repository on GitHub and copy the SSH URL (e.g., `git@github.com:YourUsername/YourRepoName.git`)
 - Clone the Repository:
-    git clone git@github.com:YourUsername/YourRepoName.git
+```bash
+git clone git@github.com:YourUsername/YourRepoName.git
+```
 - Open the Cloned Folder in VS Code:
     You can use the File > Open Folder menu to navigate to the cloned folder or use the terminal command:
-       code YourRepoName
+```bash
+code YourRepoName
+```
 (Replace YourRepoName with the name of the cloned folder.)
 
+## Working with GIT - GENERAL
 
+### Fetch, Pull, and Push Changes
+- **Fetch**: Get updates from GitHub without merging
+- **Pull**: Get updates from GitHub and merge them with your local repository
+- **Push**: Send your local commits to GitHub
 
-Working with GIT - GENERAL:
-
-Fetch, Pull, and Push Changes
-- Fetch: Get updates from GitHub without merging
-- Pull: Get updates from GitHub and merge them with your local repository.
-- Push: Send your local commits to GitHub.
 Commands:
-    (Ctrl + Shift + P), type Git: Fetch and select it.
-    git pull
-    git push
+```bash
+(Ctrl + Shift + P), type Git: Fetch and select it
+git pull
+git push
+```
 
-Creating and Switching Branches
+### Creating and Switching Branches
 
-A) Create a New Branch:
-    git checkout -b new-branch-name
+#### A) Create a New Branch
+```bash
+git checkout -b new-branch-name
+```
 OR
-    Press Ctrl + Shift + P and type Git: Create Branch.
+Press `Ctrl + Shift + P` and type Git: Create Branch
 
-B) Switch Branches:
-    (Ctrl + Shift + P) and type Git: Checkout to to switch branches.
+#### B) Switch Branches
+Press `Ctrl + Shift + P` and type Git: Checkout to switch branches
 
-C) Push a New Branch to GitHub:
-    git push -u origin new-branch-name
+#### C) Push a New Branch to GitHub
+```bash
+git push -u origin new-branch-name
+```
 
-Authentification with SSH:
-1) Open the Terminal in VS Code
- - Open the integrated terminal by pressing Ctrl + ` (the backtick key, below Esc on most keyboards) or by going to View > Terminal.
-2) Check for Existing SSH Keys
+## Authentication with SSH
+
+### 1) Open the Terminal in VS Code
+ - Open the integrated terminal by pressing `Ctrl + ` ` (the backtick key, below Esc on most keyboards) or by going to View > Terminal
+
+### 2) Check for Existing SSH Keys
 - Check if you have existing SSH keys:
-    ls -al ~/.ssh
+```bash
+ls -al ~/.ssh
+```
 If you see files like id_rsa and id_rsa.pub, you already have an SSH key. If so, skip to step 4. If not, continue to the next step.
-3) Generate a New SSH Key
+
+### 3) Generate a New SSH Key
 - Generate the SSH key:
-    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
 (Replace "your_email@example.com" with your GitHub email address.)
-- You’ll be prompted to specify a file location to save the key:
- Press Enter to use the default location (~/.ssh/id_rsa).
-Optionally, add a passphrase for extra security. Press Enter if you don’t want to set a passphrase.
-4) Start the SSH Agent:
-    eval "$(ssh-agent -s)"
+- You'll be prompted to specify a file location to save the key:
+ Press Enter to use the default location (~/.ssh/id_rsa)
+Optionally, add a passphrase for extra security. Press Enter if you don't want to set a passphrase.
+
+### 4) Start the SSH Agent
+```bash
+eval "$(ssh-agent -s)"
+```
 - Add the SSH key to the agent:
-    ssh-add ~/.ssh/id_rsa
+```bash
+ssh-add ~/.ssh/id_rsa
+```
 (If you used a custom name for your SSH key (e.g., github_id_rsa), replace id_rsa with that name.)
-5) Add the SSH Key to Your GitHub Account
+
+### 5) Add the SSH Key to Your GitHub Account
 - Copy the SSH public key to the clipboard:
-    cat ~/.ssh/id_rsa.pub
+```bash
+cat ~/.ssh/id_rsa.pub
+```
 Copy the output that starts with ssh-rsa. You can also use the clip command to directly copy to the clipboard if you are on Windows:
-    clip < ~/.ssh/id_rsa.pub
+```bash
+clip < ~/.ssh/id_rsa.pub
+```
+
 - Add the Key to GitHub:
-    Go to GitHub and log in.
-    Click on your profile picture in the top right corner and go to Settings.
-    In the left sidebar, click on SSH and GPG keys.
-    Click on the New SSH key button.
-    Add a Title (e.g., "VS Code SSH Key") and paste the SSH key into the Key field.
-    Click Add SSH key.
-6) Test the SSH Connection to GitHub
+    - Go to GitHub and log in
+    - Click on your profile picture in the top right corner and go to Settings
+    - In the left sidebar, click on SSH and GPG keys
+    - Click on the New SSH key button
+    - Add a Title (e.g., "VS Code SSH Key") and paste the SSH key into the Key field
+    - Click Add SSH key
+
+### 6) Test the SSH Connection to GitHub
 - In the VS Code terminal, test the SSH connection:
-    ssh -T git@github.com
+```bash
+ssh -T git@github.com
+```
 If successful, you should see a message like:
-Hi username! You've successfully authenticated, but GitHub does not provide shell access.
-7) Set Up Git Configurations in VS Code
+`Hi username! You've successfully authenticated, but GitHub does not provide shell access.`
+
+### 7) Set Up Git Configurations in VS Code
 - Set your GitHub username and email:
-    git config --global user.name "Your GitHub Username"
-    git config --global user.email "your_email@example.com"
+```bash
+git config --global user.name "Your GitHub Username"
+git config --global user.email "your_email@example.com"
+```
 - Check your configurations:
-    git config --list
+```bash
+git config --list
+```

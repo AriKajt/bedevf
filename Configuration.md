@@ -661,3 +661,76 @@ git config --global user.email "your_email@example.com"
 ```bash
 git config --list
 ```
+
+
+
+
+# XAMPP Configuration Instructions
+
+To set up XAMPP so that your database, PHP, and VS Code files are connected and visible on `localhost`, follow these instructions:
+
+## 1. **php.ini Configuration**
+The `php.ini` file is the main configuration file for PHP. It is typically located in `C:\xampp\php\php.ini`. Here are some common settings to check or adjust:
+
+- **Enable MySQL/MariaDB extensions**: Make sure these extensions are enabled (remove the semicolon `;` if they are commented out):
+  ```ini
+  extension=mysqli
+  extension=pdo_mysql
+  ```
+- **Error Reporting**: To make debugging easier, you might want to enable error reporting:
+  ```ini
+  display_errors = On
+  error_reporting = E_ALL
+  ```
+
+## 2. **httpd.conf (Apache Configuration)**
+This file is located in `C:\xampp\apache\conf\httpd.conf`. Key settings include:
+
+- **Document Root**: Make sure the document root points to the folder where your project files are. Look for:
+  ```apache
+  DocumentRoot "C:/xampp/htdocs"
+  <Directory "C:/xampp/htdocs">
+  ```
+  If you are working on a specific project folder like `IntraConnect`, adjust it to:
+  ```apache
+  DocumentRoot "C:/xampp/htdocs/IntraConnect"
+  <Directory "C:/xampp/htdocs/IntraConnect">
+  ```
+
+- **Port Settings**: By default, XAMPP uses port 80. If you need to change it, update:
+  ```apache
+  Listen 80
+  ServerName localhost:80
+  ```
+
+## 3. **Virtual Hosts (Optional)**
+If you want to set up a custom URL like `http://myproject.local`, you can edit the `httpd-vhosts.conf` file:
+- This file is usually located at `C:\xampp\apache\conf\extra\httpd-vhosts.conf`.
+- Add an entry like this:
+  ```apache
+  <VirtualHost *:80>
+      DocumentRoot "C:/xampp/htdocs/IntraConnect"
+      ServerName myproject.local
+  </VirtualHost>
+  ```
+- Add the custom domain to your hosts file: Edit `C:\Windows\System32\drivers\etc\hosts` and add:
+  ```
+  127.0.0.1 myproject.local
+  ```
+
+## 4. **my.ini (MySQL Configuration)**
+Located in `C:\xampp\mysql\bin\my.ini`. You don't usually need to make major changes here, but you can set the port if you have a custom configuration:
+- Default MySQL port:
+  ```ini
+  port=3306
+  ```
+
+## 5. **VS Code Setup**
+- **Open Project Folder**: In VS Code, open the project folder from `C:\xampp\htdocs\IntraConnect`.
+- **PHP Debugging**: Install the PHP Debug extension in VS Code.
+- **Live Server Extension**: If you want to preview changes in real-time, install the "Live Server" extension for VS Code. However, for PHP files, it's recommended to access them via `localhost` in your browser.
+
+## 6. **Accessing Your Project**
+- Open your browser and type `http://localhost/IntraConnect` (or `http://myproject.local` if you set up a virtual host).
+- Your files should now be accessible, and PHP should connect to the database as configured in your PHP files.
+

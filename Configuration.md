@@ -127,10 +127,10 @@ Replace username with your username and server-ip with the IP address of the vir
 
 ## 1. Update the System
 
-    ```bash
+    
     sudo apt update
     sudo apt upgrade -y
-    ```
+    
 
 # 2 - Install Apache Web Server
 

@@ -1,5 +1,4 @@
 # Setting Up a Working Environment on a Virtual Machine using Hyper-V
-
 **Note:** Hyper-V is available on Windows: Pro/Enterprise/Education editions.
 
 ## 1. Enable Hyper-V
@@ -126,7 +125,6 @@ Replace username with your username and server-ip with the IP address of the vir
 # Installing Apache
 
 ## 1. Update the System
-
     
     sudo apt update
     sudo apt upgrade -y
@@ -136,9 +134,9 @@ Replace username with your username and server-ip with the IP address of the vir
 
 To install Apache Web Server, run the following command:
 
-        ```bash
+       
         sudo apt install apache2
-        ```
+        
 
 ## Common commands for Apache:
 - sudo systemctl status apache2  # Check status of Apache

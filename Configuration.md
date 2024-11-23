@@ -135,6 +135,7 @@ Replace username with your username and server-ip with the IP address of the vir
 # 2 - Install Apache Web Server
 
 To install Apache Web Server, run the following command:
+
         ```bash
         sudo apt install apache2
         ```
